@@ -1,0 +1,6 @@
+oc patch dc publisher --type=json -p '[{"op": "add", "path": "/spec/template/spec/containers/0/command", "value": ["/bin/bash","-c","HelloWorld_publisher"] }]' -n publisher
+oc patch dc publisher --type=json -p '[{"op": "add", "path": "/spec/template/spec/containers/0/env", "value":[{"name":"NDDS_DISCOVERY_PEERS","value": "1@builtin.udpv4://10.15.74.53"}] }]' -n publisher
+oc patch dc publisher --type=json -p '[{"op": "add", "path": "/spec/strategy/type", "value":"Recreate" }]' -n publisher
+
+oc patch dc publisher --type=json -p '[{"op": "add", "path": "/spec/template/spec/containers/0/command", "value": ["/bin/bash","-c","HelloWorld_publisher"] }]' -n publisher
+oc patch dc/publisher -n publisher -p '[{"op": "add","path":"/spec/template/spec/containers/0/env","value":[{"name":"NDDS_DISCOVERY_PEERS", "value":"1@builtin.udpv4://10.15.74.53"}]]'
