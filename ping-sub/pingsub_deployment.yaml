@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ping-sub
+spec:
+  selector:
+    matchLabels:
+      app: ping-sub
+  template:
+    metadata:
+      labels:
+        app: ping-sub
+    spec:
+      containers:
+        - name: ping-sub
+          image: docker.io/pnminh/dds-ping-sub
+          env:
+            - name: ARGS
+              value: "-domainId 10 -Verbosity 2 -index 1"
