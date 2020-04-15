@@ -4,11 +4,11 @@ g_service.xsd">
     <routing_service name="RS-TCP-EXTERN">
         <domain_route name="TCPWAN_UDPLAN">
             <participant name="1">
-                <domain_id>100</domain_id>
+                <domain_id>$(WAN_DOMAIN)</domain_id>
                 <participant_qos>
                     <discovery>
                         <initial_peers>
-                            <element>tcpv4_wan://10.15.74.48:30007</element>
+                            <element>$(INITIAL_PEERS)</element>
                         </initial_peers>
                     </discovery>
                     <transport_builtin>
@@ -45,7 +45,7 @@ g_service.xsd">
                 </participant_qos>
             </participant>
             <participant name="2">
-                <domain_id>11</domain_id>
+                <domain_id>$(LAN_DOMAIN)</domain_id>
             </participant>
             <session name="Session">
                 <auto_topic_route name="AllForward">

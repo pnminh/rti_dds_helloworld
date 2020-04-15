@@ -6,16 +6,16 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: rti-routingservice # has to match .spec.template.metadata.labels
-  serviceName: "rti-routingservice"
+      app: routing-service # has to match .spec.template.metadata.labels
+  serviceName: "routing-service"
   replicas: 1
   template:
     metadata:
       labels:
-        app: rti-routingservice # has to match .spec.selector.matchLabels
+        app: routing-service # has to match .spec.selector.matchLabels
     spec:
       containers:
-        - name: rti-routingservice
+        - name: routing-service
           image: docker.io/pnminh/dds-routingservice
           ports:
             - containerPort: 7400
@@ -29,13 +29,13 @@ spec:
             - name: ARGS
               value: "-verbosity 5"
             - name: PUBLIC_ADDR # value for dds.transport.TCPv4.tcp1.public_address
-              value: "10.15.74.48:30007"
+              value: "10.15.74.53:7400"
             - name: SERVER_PORT # has to match containerPort. value for dds.transport.TCPv4.tcp1.server_bind_port
               value: "7400"
             - name: WAN_DOMAIN # value for WAN domain ID
               value: "100"
             - name: LAN_DOMAIN # value for LAN domain ID
-              value: "10"
+              value: "6"
       volumes:
         - name: config-volume
           configMap:

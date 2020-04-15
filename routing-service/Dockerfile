@@ -1,8 +1,5 @@
 FROM ubuntu:18.04
 WORKDIR /app
-# COPY rtiroutingservice \
-#      rti_license.dat \
-#       ./
 COPY . /app
 # Add the apps to the PATH
 ENV PATH=$PATH:/app \
