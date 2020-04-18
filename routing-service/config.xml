@@ -51,6 +51,7 @@ xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/6.0.0/rti_routing
             </participant>
             <participant name="2">
                 <domain_id>$(LAN_DOMAIN)</domain_id>
+                <participant_qos base_name="NddsQosProfilesLibrary::DefaultProfile"/>
             </participant>
             <session name="Session">
                 <auto_topic_route name="Forward">
@@ -58,10 +59,14 @@ xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/6.0.0/rti_routing
                     <input participant="1">
                         <deny_topic_name_filter>rti/*</deny_topic_name_filter>
                         <creation_mode>IMMEDIATE</creation_mode>
+                        <datareader_qos base_name="NddsQosProfilesLibrary::CFDataReaderProfile"/>
+
                     </input>
                     <output participant="2">
                         <deny_topic_name_filter>rti/*</deny_topic_name_filter>
                         <creation_mode>IMMEDIATE</creation_mode>
+                        <datawriter_qos base_name="NddsQosProfilesLibrary::CFDataWriterProfile"/>
+
                     </output>
                 </auto_topic_route>
                 <auto_topic_route name="Backward">
@@ -69,10 +74,14 @@ xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/6.0.0/rti_routing
                     <input participant="2">
                         <creation_mode>IMMEDIATE</creation_mode>
                         <deny_topic_name_filter>rti/*</deny_topic_name_filter>
+                        <datareader_qos base_name="NddsQosProfilesLibrary::CFDataReaderProfile"/>
+
                     </input>
                     <output>
                         <creation_mode>IMMEDIATE</creation_mode>
                         <deny_topic_name_filter>rti/*</deny_topic_name_filter>
+                        <datawriter_qos base_name="NddsQosProfilesLibrary::CFDataWriterProfile"/>
+
                     </output>
                 </auto_topic_route>
             </session>

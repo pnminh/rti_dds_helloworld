@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/5.2.0/rti_routing_service.xsd">
+
+    <!-- ********************************************************************** -->
+    <!-- abc configuration file for RTI Routing Service -->
+    <!-- ********************************************************************** -->
+
+<types>
+<struct name= "ShapeType">
+  <member name="color" stringMaxLength="128" type="string" key="true"/>
+  <member name="x" type="int32"/>
+  <member name="y" type="int32"/>
+  <member name="shapesize" type="int32"/>
+</struct>
+<include file="" />
+</types>
+
+
+   <routing_service name="RouteNoTypeCode">
+
+        <annotation>
+            <documentation>Routes all topics from domain 34 to domain 35</documentation>
+        </annotation>
+
+
+        <!-- The administration tag enables remote administration, and is 
+            required when using Admin Console. -->
+        <administration>
+            <domain_id>34</domain_id>
+            <distributed_logger>
+                <enabled>true</enabled>
+                <filter_level>WARNING</filter_level>
+            </distributed_logger>
+        </administration>
+
+
+
+        <!-- This is the Monitoring configuration for all the entities in 
+            this routing service, and is required when using Admin Console. -->
+        <monitoring>
+            <!-- The domain id where to publish the monitoring information -->
+            <domain_id>34</domain_id>
+            <!-- How often to publish it -->
+            <status_publication_period>
+                <sec>5</sec>
+                <nanosec>0</nanosec>
+            </status_publication_period>
+            <!-- How often to compute statistics -->
+            <statistics_sampling_period>
+                <sec>1</sec>
+                <nanosec>0</nanosec>
+            </statistics_sampling_period>
+        </monitoring>
+
+        <domain_route name="NoTypeCodeDomainRoute">
+
+            <participant_1>
+                <domain_id>34</domain_id>
+				<registered_type name="ShapeType" type_name="ShapeType"/>
+            </participant_1>
+
+            <participant_2>
+                <domain_id>35</domain_id>
+				<registered_type name="ShapeType" type_name="ShapeType"/>
+             </participant_2>
+
+            <session name="abcSession">
+                <topic_route name="RouteAll">
+					<route_types>false</route_types>
+                    <!-- <publish_with_original_info>true</publish_with_original_info> -->
+                    <input participant="1">
+                        <creation_mode>IMMEDIATE</creation_mode>
+                        <allow_topic_name_filter>Square</allow_topic_name_filter>
+                        <allow_registered_type_name_filter>*</allow_registered_type_name_filter>
+                        
+                        <deny_topic_name_filter>rti/*</deny_topic_name_filter>
+						<registered_type_name>ShapeType</registered_type_name>
+						<topic_name>Square</topic_name>
+                    </input>
+                    <output>
+                        <creation_mode>IMMEDIATE</creation_mode>
+                        <allow_topic_name_filter>Square</allow_topic_name_filter>
+                        <allow_registered_type_name_filter>*</allow_registered_type_name_filter>
+                        
+                        <deny_topic_name_filter>rti/*</deny_topic_name_filter>
+						<registered_type_name>ShapeType</registered_type_name>
+						<topic_name>Square</topic_name>
+                    </output>
+                </topic_route>
+            </session>
+        </domain_route>
+    </routing_service>
+</dds>

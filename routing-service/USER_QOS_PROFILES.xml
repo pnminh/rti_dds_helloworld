@@ -1,0 +1,121 @@
+<!-- 
+RTI Data Distribution Service QoS Profiles
+-->
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="rti_dds_qos_profiles-v5_3_1.xsd" version="5.3.1">
+    <!-- Use this line for DDS version 5.2 instead of the line above -->
+    <!--  xsi:noNamespaceSchemaLocation="rti_dds_qos_profiles-v5_3_1.xsd" version="5.3.1"> -->
+    <!--  xsi:noNamespaceSchemaLocation="rti_dds_qos_profiles-v4_5d.xsd" version="4.5d"> -->
+
+
+    <!-- Qos Library -->
+    <qos_library name="NddsQosProfilesLibrary">
+        <qos_profile name="DefaultProfile">
+            <datareader_qos>
+                <durability>
+                    <!-- <kind>VOLATILE_DURABILITY_QOS</kind> -->
+                    <kind>TRANSIENT_DURABILITY_QOS</kind>
+                </durability>
+                <reliability>
+                    <!-- <kind>BEST_EFFORT_RELIABILITY_QOS</kind> -->
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <!-- <depth>1</depth> -->
+                    <depth>50000</depth>
+                </history>
+            </datareader_qos>
+            <datawriter_qos>
+                <durability>
+                    <!-- <kind>VOLATILE_DURABILITY_QOS</kind> -->
+                    <kind>TRANSIENT_DURABILITY_QOS</kind>
+                </durability>
+                <reliability>
+                    <!-- <kind>BEST_EFFORT_RELIABILITY_QOS</kind> -->
+                    <kind>RELIABLE_RELIABILITY_QOS</kind>
+                </reliability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <!-- <depth>1</depth> -->
+                    <depth>50000</depth>
+                </history>
+                <lifespan>
+                    <duration>
+                        <!-- <sec>DURATION_INFINITE_SEC</sec> -->
+                        <sec>45</sec>
+                        <!-- <nanosec>DURATION_INFINITE_NSEC</nanosec> -->
+                        <nanosec>0</nanosec>
+                    </duration>
+                </lifespan>
+            </datawriter_qos>
+            <participant_qos>
+                <property>
+                    <value>
+                        <element>
+                            <name>dds.transport.UDPv4.builtin.send_socket_buffer_size</name>
+                            <value>33554432</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.UDPv4.builtin.recv_socket_buffer_size</name>
+                            <value>33554432</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.UDPv4.builtin.parent.message_size_max</name>
+                            <value>65536</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.shmem.builtin.parent.message_size_max</name>
+                            <value>65536</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.shmem.builtin.received_message_count_max</name>
+                            <value>512</value>
+                        </element>
+                        <element>
+                            <name>dds.transport.shmem.builtin.receive_buffer_size</name>
+                            <value>4194304</value>
+                        </element>
+                    </value>
+                </property>
+
+                <receiver_pool>
+                    <buffer_size>65536</buffer_size>
+                </receiver_pool>
+
+            </participant_qos>
+        </qos_profile> <!--  end DefaultProfile -->
+
+
+        <qos_profile name="CFDataWriterProfile" base_name="DefaultProfile" is_default_qos="false">
+            <datawriter_qos>
+                <durability>
+                    <kind>VOLATILE_DURABILITY_QOS</kind>
+                </durability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>1</depth>
+                </history>
+                <lifespan>
+                    <duration>
+                        <sec>DURATION_INFINITE_SEC</sec>
+                        <nanosec>DURATION_INFINITE_NSEC</nanosec>
+                    </duration>
+                </lifespan>
+            </datawriter_qos>
+        </qos_profile> <!--  end CFDataWriterProfile -->
+
+        <qos_profile name="CFDataReaderProfile" base_name="DefaultProfile" is_default_qos="false">
+            <datareader_qos>
+                <durability>
+                    <kind>VOLATILE_DURABILITY_QOS</kind>
+                </durability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>1</depth>
+                </history>
+            </datareader_qos>
+        </qos_profile> <!--  end CFDataReaderProfile -->
+
+    </qos_library> <!-- end NddsQosProfilesLibrary -->
+
+</dds>

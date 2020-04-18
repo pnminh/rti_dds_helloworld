@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<types xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/rti_connext_dds-5.3.1/bin/../resource/app/app_support/rtiddsgen/schema/rti_dds_topic_types.xsd">
+<struct name= "ShapeType">
+  <member name="color" stringMaxLength="128" type="string" key="true"/>
+  <member name="x" type="int32"/>
+  <member name="y" type="int32"/>
+  <member name="shapesize" type="int32"/>
+</struct>
+</types>
