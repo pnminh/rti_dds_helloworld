@@ -60,7 +60,6 @@ xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/6.0.0/rti_routing
                         <deny_topic_name_filter>rti/*</deny_topic_name_filter>
                         <creation_mode>IMMEDIATE</creation_mode>
                         <datareader_qos base_name="NddsQosProfilesLibrary::CFDataReaderProfile"/>
-
                     </input>
                     <output participant="2">
                         <deny_topic_name_filter>rti/*</deny_topic_name_filter>

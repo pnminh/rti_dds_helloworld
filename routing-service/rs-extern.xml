@@ -49,6 +49,32 @@ xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/6.0.0/rti_routing
                 <participant_qos base_name="NddsQosProfilesLibrary::DefaultProfile"/>
             </participant>
             <session name="Session">
+                <auto_topic_route name="HighQosForward">
+                    <publish_with_original_info>true</publish_with_original_info>
+                    <input participant="1">
+                        <creation_mode>IMMEDIATE</creation_mode>
+                        <allow_topic_name_filter>State*,Mode*</allow_topic_name_filter>
+                        <datareader_qos base_name="NddsQosProfilesLibrary::DefaultProfile" />
+                    </input>
+                    <output>
+                        <creation_mode>IMMEDIATE</creation_mode>
+                        <allow_topic_name_filter>State*,Mode*</allow_topic_name_filter>
+                        <datawriter_qos base_name="NddsQosProfilesLibrary::DefaultProfile" />
+                    </output>
+                </auto_topic_route>
+                <auto_topic_route name="HighQosBackward">
+                    <publish_with_original_info>true</publish_with_original_info>
+                    <input participant="2">
+                        <creation_mode>IMMEDIATE</creation_mode>
+                        <allow_topic_name_filter>State*,Mode*</allow_topic_name_filter>
+                        <datareader_qos base_name="NddsQosProfilesLibrary::DefaultProfile" />
+                    </input>
+                    <output>
+                        <creation_mode>IMMEDIATE</creation_mode>
+                        <allow_topic_name_filter>State*,Mode*</allow_topic_name_filter>
+                        <datawriter_qos base_name="NddsQosProfilesLibrary::DefaultProfile" />
+                    </output>
+                </auto_topic_route>
                 <auto_topic_route name="AllForward">
                     <publish_with_original_info>true</publish_with_original_info>
                     <input participant="1">
